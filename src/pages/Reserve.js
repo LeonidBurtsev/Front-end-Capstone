@@ -1,14 +1,17 @@
 import './Pages.css';
+import '../controls/UI_kit.css'
 import BookingTable from '../controls/BookingTable'
 
 function Reserve() {
 
-    const main_text = "This is Reserve page."
+    const main_text = "Reserve a Table."
+    const add_text1 = "We're excited to welcome you! Whether you're planning a cozy dinner, a family gathering, or a special celebration — make it memorable with us."
 
     return (
         <main className='pages'>
             <div className='section_UP'>
-                <h1>{main_text}</h1>
+                <h1 className='header_text'>{main_text}</h1>
+                <h1 className='usual_text'>{add_text1}</h1>
             </div>
             <div className='section_middle'>
                 <BookingTable></BookingTable>

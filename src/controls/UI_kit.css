@@ -1,0 +1,62 @@
+
+h1{
+  margin-block-start: 0.1em;
+  margin-block-end: 0.1em;
+  margin-inline-start: 5px;
+  margin-inline-end: 5px;
+}
+
+.header_text {
+  display: flex;
+  color: black;
+  font-family: 'Markazi Text', sans-serif;
+  font-size: 64px;
+  font-weight: 500; /* Добавлено для Medium */
+
+}
+.sub_header {
+  display: flex;
+  color: black;
+  font-family: 'Markazi Text', sans-serif;
+  font-size: 40px;
+  font-weight: 500; /* Добавлено для Medium */
+
+}
+.usual_text {
+  display: flex;
+  color: black;
+  font-family: 'Karla', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  white-space: pre-line;
+}
+
+.usual_text2 {
+  display: flex;
+  color: black;
+  font-family: 'Karla', sans-serif;
+  font-size: 24px;
+  font-weight: 600; /* Обычное Regular начертание */
+
+}
+
+.special_text {
+  display: flex;
+  color: black;
+  font-family: 'Karla', sans-serif;
+  font-size: 32px;
+  font-weight: 600; /* Обычное Regular начертание */
+
+}
+
+.navigation_text {
+  display: flex;
+  color: black;
+  font-family: 'Karla', sans-serif;
+  font-size: 3vmin;
+  font-weight: 800; /* Обычное Regular начертание */
+  margin-block-start: 0.1em;
+  margin-block-end: 0.1em;
+  margin-inline-start: 5px;
+  margin-inline-end: 5px;
+}

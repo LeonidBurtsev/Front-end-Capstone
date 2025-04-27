@@ -4,7 +4,7 @@ const author = "Leonid B."
 
 /* Setting up symVer. */
 const major_version = 0
-const minor_version = 3
+const minor_version = 4
 const patch_version = 0
 
 export default function return_version() {

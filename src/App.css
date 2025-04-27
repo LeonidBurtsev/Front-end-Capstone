@@ -29,18 +29,6 @@
   place-items: center;
   gap: 5vw;
   height: 9vh;
-  width: 100vw;
+  width: 90vw;
 }
 
-.nav-item {
-  color: black;
-}
-
-.h1standard {
-  display: flex;
-  justify-content: center; /* Центрирование по горизонтали */
-  align-items: center; /* Центрирование по вертикали */
-  color: black;
-  text-align: center;
-  height: 10vh; /* Высота элемента */
-}
