@@ -11,8 +11,7 @@ h1{
   color: black;
   font-family: 'Markazi Text', sans-serif;
   font-size: 64px;
-  font-weight: 500; /* Добавлено для Medium */
-
+  font-weight: 700; /* Добавлено для Medium */
 }
 .sub_header {
   display: flex;
@@ -29,6 +28,8 @@ h1{
   font-size: 16px;
   font-weight: 400;
   white-space: pre-line;
+  justify-content: center; /* Центр по горизонтали */
+  align-items: center;      /* (опционально) Центр по вертикали */
 }
 
 .usual_text2 {
@@ -37,7 +38,8 @@ h1{
   font-family: 'Karla', sans-serif;
   font-size: 24px;
   font-weight: 600; /* Обычное Regular начертание */
-
+  justify-content: center; /* Центр по горизонтали */
+  align-items: center;      /* (опционально) Центр по вертикали */
 }
 
 .special_text {

@@ -1,5 +1,5 @@
 .pages {
-    background-color: #282c34;
+    background-color: white;
     min-height: 84vh;
     width: 100vw;
     display: grid;
@@ -9,7 +9,7 @@
 }
 
 .section_UP {
-    background-color: red;
+    /* background-color: red; */
     min-height: 20vh;
     width: 90vw;
     display: grid;
@@ -20,7 +20,7 @@
 }
 
 .section_middle {
-    background-color: green;
+    /* background-color: green; */
     min-height: 38vh;
     width: 90vw;
     display: grid;
@@ -31,7 +31,7 @@
 }
 
 .section_down {
-    background-color: grey;
+    /* background-color: grey; */
     min-height: 20vh;
     width: 90vw;
     display: grid;

@@ -1,5 +1,6 @@
 import './Pages.css';
 import '../controls/UI_kit.css'
+import '../controls/MenuNav'
 
 function Homepage() {
 

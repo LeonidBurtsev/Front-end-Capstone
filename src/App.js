@@ -13,14 +13,14 @@ function App() {
     <header className="mainDiv">
             <nav className="navigation">
                 <Link to="/" className="navigation_text">Homepage</Link>
-                <Link to="/reserve" className="navigation_text">Book</Link>
                 <Link to="/menu" className="navigation_text">Menu</Link>
+                <Link to="/reserve" className="navigation_text">Book</Link>
                 <Link to="/basket" className="navigation_text">Basket</Link>
             </nav>
             <Routes >
                 <Route path="/" element={<Homepage />} ></Route>
-                <Route path="/reserve" element={<Reserve />} ></Route>
                 <Route path="/menu" element={<Menu />} ></Route>
+                <Route path="/reserve" element={<Reserve />} ></Route>
                 <Route path="/basket" element={<Basket />} ></Route>
             </Routes>
             <Footer/>
