@@ -1,0 +1,92 @@
+.slideshow {
+    position: relative;
+    width: 75vw;
+    height: 50vh;              /* 50% of viewport height */
+    overflow: hidden;
+  }
+  
+  .slideshow-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .slide {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    border-radius: 0.5rem;      /* rounded corners */
+  }
+  
+  .slide.active {
+    opacity: 1;
+  }
+  
+  .slide img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+  }
+  
+  .slide-caption {
+    position: absolute;
+    bottom: 2rem; left: 0;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 1rem;
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+  }
+  
+  /* arrows */
+  .nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.4);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    padding: 0.2rem 0.5rem;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  .nav.prev { left: 2rem; }
+  .nav.next { right: 2rem; }
+  
+  .dots {
+    position: absolute;
+    bottom: 0.5rem;
+    width: 100%;
+    text-align: center;
+  }
+  
+  /* reset any default button styles & prevent selection */
+  .dots .dot {
+    -webkit-appearance: none;  /* remove iOS safari default */
+    appearance: none;
+    background: rgba(255,255,255,0.5);
+    border: none;
+    margin: 0 0.25rem;
+    padding: 0;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    cursor: pointer;
+    user-select: none;         /* disable any text selection */
+  }
+  
+  /* active dot */
+  .dots .dot.active {
+    background: rgba(255,255,255,1);
+  }
+  
+  /* optional focus styling for accessibility */
+  .dots .dot:focus {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+  }

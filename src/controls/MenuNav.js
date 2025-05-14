@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./UI_kit.css";
-
+import "./_global_";
 /**
  * MenuNav component (v2)
  * - multi‑select with toggle

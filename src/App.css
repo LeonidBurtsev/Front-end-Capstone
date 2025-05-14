@@ -23,6 +23,8 @@
   width: 100vw;
 }
 
+
+
 .navigation {
   display: flex;
   justify-content: center;
@@ -32,3 +34,24 @@
   width: 90vw;
 }
 
+/* Base link style */
+.navigation_text {
+  position: relative;
+  text-decoration: none;
+  font-weight: 500;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+/* Hover animation: orange text + subtle black glow */
+.navigation_text:hover {
+  color: orange;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+}
+
+/* Active link: solid yellow, no transition delay */
+.navigation_text.active {
+  color: yellow;
+  /* If you want an extra shadow when active: */
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
+}

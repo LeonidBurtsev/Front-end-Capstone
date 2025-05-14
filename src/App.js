@@ -1,31 +1,52 @@
 import './App.css';
-import './controls/UI_kit.css'
+import './controls/UI_kit.css';
 import Homepage from "./pages/Homepage";
 import Reserve from "./pages/Reserve";
 import Menu from "./pages/Menu";
 import Basket from "./pages/Basket";
-import Footer from "./controls/Footer"
-import { Routes, Route, Link } from "react-router-dom";
-
+import Footer from "./controls/Footer";
+import { Routes, Route, NavLink } from "react-router-dom";
 
 function App() {
   return (
     <header className="mainDiv">
-            <nav className="navigation">
-                <Link to="/" className="navigation_text">Homepage</Link>
-                <Link to="/menu" className="navigation_text">Menu</Link>
-                <Link to="/reserve" className="navigation_text">Book</Link>
-                <Link to="/basket" className="navigation_text">Basket</Link>
-            </nav>
-            <Routes >
-                <Route path="/" element={<Homepage />} ></Route>
-                <Route path="/menu" element={<Menu />} ></Route>
-                <Route path="/reserve" element={<Reserve />} ></Route>
-                <Route path="/basket" element={<Basket />} ></Route>
-            </Routes>
-            <Footer/>
+      <nav className="navigation">
+        <NavLink
+          to="/"
+          end
+          className="navigation_text"
+        >
+          Homepage
+        </NavLink>
+        <NavLink
+          to="/menu"
+          className="navigation_text"
+        >
+          Menu
+        </NavLink>
+        <NavLink
+          to="/reserve"
+          className="navigation_text"
+        >
+          Book
+        </NavLink>
+        <NavLink
+          to="/basket"
+          className="navigation_text"
+        >
+          Basket
+        </NavLink>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/menu" element={<Menu />} />
+        <Route path="/reserve" element={<Reserve />} />
+        <Route path="/basket" element={<Basket />} />
+      </Routes>
+      <Footer />
     </header>
   );
-};
+}
 
 export default App;

@@ -5,7 +5,7 @@ import MenuNav from '../controls/MenuNav';
 function Menu() {
     const main_text = "Our menu"
     const sub_text = `We have menu for all tests and wishes. Check out our specials too! Click on items to add them to basket.`;
-    const usual_text2 = `For payment and entering delivery address switch to Order page please.`;
+    const usual_text2 = `Your order is :`;
 
     return (
         <main className='pages'>
