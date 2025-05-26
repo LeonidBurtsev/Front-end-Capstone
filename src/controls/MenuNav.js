@@ -1,6 +1,8 @@
-import { useState, useEffect } from "react";
-import "./UI_kit.css";
-import "./_global_";
+import { useState, useEffect, useContext } from "react";
+import "../index.css";
+import "../pages/_global_";
+import { BasketContext } from '../pages/_global_';
+
 /**
  * MenuNav component (v2)
  * - multi‑select with toggle
@@ -61,8 +63,14 @@ export default function MenuNav() {
   /* ------------------------------------------------------------------
    *   External‑API helper
    * ------------------------------------------------------------------ */
+  const { updateSelection } = useContext(BasketContext);
+
+  // Функция, которая принимает новое состояние корзины и записывает его в Context
   const send_contextAPIselection = (sel) => {
-    console.log("contextAPI selection:", sel);
+    // Обновляем контекст
+    updateSelection(sel);
+    // Логируем для отладки
+    console.log('contextAPI selection updated:', sel);
   };
 
   // Whenever currentSelection changes, push it to the (mock) Context/API

@@ -9,7 +9,18 @@
 }
 
 .section_UP {
-    /* background-color: red; */
+    background-color: var(--main-color);
+    min-height: 20vh;
+    width: 90vw;
+    display: grid;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1vh;
+}
+
+.section_UP_var2 {
+    background-color: var(--secondary-color);
     min-height: 20vh;
     width: 90vw;
     display: grid;

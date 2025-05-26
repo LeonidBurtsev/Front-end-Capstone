@@ -1,5 +1,5 @@
-import './App.css';
-import './controls/UI_kit.css';
+import './styles/App.css';
+import './index.css';
 import Homepage from "./pages/Homepage";
 import Reserve from "./pages/Reserve";
 import Menu from "./pages/Menu";

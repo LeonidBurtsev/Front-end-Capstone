@@ -23,8 +23,6 @@
   width: 100vw;
 }
 
-
-
 .navigation {
   display: flex;
   justify-content: center;
@@ -34,24 +32,27 @@
   width: 90vw;
 }
 
-/* Base link style */
 .navigation_text {
+  display: flex;
+  font-family: var( --main-font);
+  font-size: 3vmin;
+  font-weight: var(--main-font-weight);
   position: relative;
   text-decoration: none;
-  font-weight: 500;
-  color: #333;
+  color: var(--main-color);
   transition: color 0.3s ease;
+  margin-block-start: 0.1em;
+  margin-block-end: 0.1em;
+  margin-inline-start: 5px;
+  margin-inline-end: 5px;
 }
 
-/* Hover animation: orange text + subtle black glow */
 .navigation_text:hover {
-  color: orange;
-  text-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+  color: black;
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
 }
 
-/* Active link: solid yellow, no transition delay */
 .navigation_text.active {
-  color: yellow;
-  /* If you want an extra shadow when active: */
-  text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
+  color: var(--secondary-color);
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
 }
