@@ -109,6 +109,26 @@ export default function MenuNav() {
   /* ------------------------------------------------------------------
    *   STYLES (inline for clarity)
    * ------------------------------------------------------------------ */
+  const menu_colors = {
+
+    /* MENU ITEM SETTINGS. */
+    menu_item_selected : 'var(--secondary-color)',
+    menu_item_unselected : 'var(--main-color)',
+    menu_text_unselected : "white",
+    menu_text_selected : "black",
+
+    /* ELEMENTS ITSELF.  */
+
+    initial_color :'var(--main-color)',
+    color_when_selected : 'var(--secondary-color)',
+    card_hover_over : 'var(--third-color)',
+    card_main_text : "black",
+    card_secondary_text : "white",
+
+    /* ADITIONALS*/
+    divider : 'var(--secondary-color)',
+    order_for_delivery : "black"
+  }
   const styles = {
     wrapper: {
       display: "flex",
@@ -120,7 +140,7 @@ export default function MenuNav() {
       width: "80vw",
       margin: "1vh 0",
       textAlign: "left",
-      color: "black",
+      color: menu_colors['order_for_delivery'],
       fontSize: "1vw",
     },
     navBar: {
@@ -137,10 +157,11 @@ export default function MenuNav() {
       cursor: "pointer",
       padding: "0.5vw 1vw",
       borderRadius: 10,
-      backgroundColor: active ? "#495E57" : "#EDEFEE",
-      color: active ? "#EDEFEE" : "#495E57",
+      backgroundColor: active ? menu_colors['menu_item_selected']:  menu_colors['menu_item_unselected'],
+      color: active ? menu_colors['menu_text_selected']:  menu_colors['menu_text_unselected'],
       fontSize: "1.5vw",
       transition: "background-color 0.3s ease, color 0.3s ease",
+      userSelect: 'none' 
     }),
     verticalList: {
       display: "flex",
@@ -148,7 +169,7 @@ export default function MenuNav() {
       alignItems: "center",
       width: "50vw",
       overflowY: "auto",
-      color: "black",
+      color: menu_colors['color_when_selected'],
       fontSize: "1.2vw",
     },
     card: (selected) => ({
@@ -157,16 +178,17 @@ export default function MenuNav() {
       gap: "0.3vh",
       padding: "0.5vw 1vw",
       borderRadius: 10,
-      backgroundColor: selected ? "red" : "#EDEFEE",
-      color: "#495E57",
+      backgroundColor: selected ?  menu_colors['color_when_selected']:  menu_colors['initial_color'],
+      color: selected ?  menu_colors['card_main_text'] : menu_colors['card_secondary_text'],
       fontSize: "1.3vw",
       cursor: "pointer",
       transition: "background-color 0.3s ease",
+      userSelect: 'none' 
     }),
     divider: {
       width: "100%",
       height: 1,
-      backgroundColor: "grey",
+      backgroundColor: menu_colors['divider'],
       margin: "0.5vh 0",
     },
   };
@@ -201,11 +223,11 @@ export default function MenuNav() {
             <div
               style={styles.card(opt.selected)}
               onClick={() => handleOptionToggle(activeMenuIdx, idx)}
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "grey")}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = menu_colors['card_hover_over'])}
               onMouseLeave={(e) =>
                 (e.currentTarget.style.backgroundColor = opt.selected
-                  ? "red"
-                  : "#EDEFEE")
+                  ? menu_colors['color_when_selected']
+                  : menu_colors['initial_color'])
               }
             >
               <div>{opt.name}</div>

@@ -44,7 +44,7 @@ function App() {
         <Route path="/reserve" element={<Reserve />} />
         <Route path="/basket" element={<Basket />} />
       </Routes>
-      <Footer />
+      <Footer/>
     </header>
   );
 }

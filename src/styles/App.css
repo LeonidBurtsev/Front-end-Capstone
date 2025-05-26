@@ -45,14 +45,16 @@
   margin-block-end: 0.1em;
   margin-inline-start: 5px;
   margin-inline-end: 5px;
+  user-select: 'none'; 
 }
 
 .navigation_text:hover {
-  color: black;
+  color: var( --third-color);
   text-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
 }
 
 .navigation_text.active {
   color: var(--secondary-color);
-  text-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
 }
+

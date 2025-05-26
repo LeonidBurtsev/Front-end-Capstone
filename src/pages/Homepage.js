@@ -18,7 +18,7 @@ function Homepage() {
 
   return (
     <main className='pages'>
-      <div className='section_UP'>
+      <div className='section_UP section_UP--main'>
         <h1 className='header_text_var2'>{main_text}</h1>
         <h1 className='sub_header_var2'>{add_text1}</h1>
         <h1 className='usual_text_var2'>{add_text2}</h1>

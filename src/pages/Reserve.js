@@ -8,7 +8,7 @@ function Reserve() {
     const low_text = 'Enter your phone number and we will call you back !'
     return (
         <main className='pages'>
-            <div className='section_UP_var2'>
+            <div className='section_UP section_UP--secondary'>
                 <h1 className='header_text'>{main_text}</h1>
                 <h1 className='usual_text'>{add_text1}</h1>
             </div>
