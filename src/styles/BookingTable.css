@@ -1,30 +1,56 @@
-/* BookingTable.css */
+/* BookingTable.css – responsive version */
+/* All comments are in English */
 
-/* Container styling for the booking form */
-.booking-form {
-  background-color: #fff; /* white background */
-  max-width: 400px;
-  width: 90%;
-  margin: 2rem auto;
-  padding: 2rem;
-  display: grid;
-  gap: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+/* ================================
+   Root variables for the booking form
+   ================================ */
+:root {
+  /* Container sizing */
+  --form-max-width: clamp(20rem, 90vw, 25rem);
+  --form-padding: clamp(1rem, 2vw, 2rem);
+  --form-gap: clamp(1rem, 2vw, 2rem);
+  --form-radius: clamp(0.5rem, 1vw, 1rem);
+  --form-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  /* Typography */
+  --font-base: clamp(0.875rem, 1vw, 1rem);
+  --font-small: clamp(0.75rem, 1vw, 0.875rem);
+
+  /* Input padding */
+  --input-padding: clamp(0.5rem, 1vw, 1rem);
 }
 
-/* Label styling */
+/* ================================
+   Container styling for the booking form
+   ================================ */
+.booking-form {
+  background-color: #fff; /* white background */
+  width: 100%;
+  max-width: var(--form-max-width);
+  margin: 2rem auto;
+  padding: var(--form-padding);
+  display: grid;
+  gap: var(--form-gap);
+  box-shadow: var(--form-shadow);
+  border-radius: var(--form-radius);
+}
+
+/* ================================
+   Label styling
+   ================================ */
 .booking-form label {
-  font-size: 1rem;
+  font-size: var(--font-base);
   font-weight: 500;
   color: var(--main-color);
 }
 
-/* Input and select styling */
+/* ================================
+   Input and select styling
+   ================================ */
 .booking-form input,
 .booking-form select {
-  font-size: 1rem;
-  padding: 0.75rem 1rem;
+  font-size: var(--font-base);
+  padding: var(--input-padding) var(--input-padding);
   border: 1px solid #ccc;
   border-radius: 4px;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
@@ -49,7 +75,7 @@
   border-color: red;
 }
 .booking-form .error-message {
-  font-size: 0.875rem;
+  font-size: var(--font-small);
   color: red;
 }
 
@@ -58,20 +84,48 @@
   text-align: center;
 }
 
-/* Responsive adjustments */
-@media (min-width: 768px) {
+/* ================================
+   Responsive breakpoints (desktop-first)
+   ================================ */
+
+/* Reduce gaps on small desktops */
+@media (max-width: 1200px) {
   .booking-form {
-    width: 400px;
+    padding: clamp(0.75rem, 2vw, 1.5rem);
+    gap: clamp(0.75rem, 2vw, 1.5rem);
   }
 }
-@media (max-width: 480px) {
+
+/* Slightly narrower form on tablets */
+@media (max-width: 992px) {
   .booking-form {
-    padding: 1rem;
-    gap: 1rem;
+    max-width: clamp(18rem, 80vw, 24rem);
+  }
+}
+
+/* Adjust typography and inputs on large phones / small tablets */
+@media (max-width: 768px) {
+  .booking-form label {
+    font-size: var(--font-small);
   }
   .booking-form input,
   .booking-form select {
-    font-size: 0.875rem;
-    padding: 0.5rem 0.75rem;
+    font-size: var(--font-small);
+    padding: calc(var(--input-padding) * 0.75) calc(var(--input-padding) * 0.75);
+  }
+}
+
+/* Final tweaks for mobile phones */
+@media (max-width: 576px) {
+  .booking-form {
+    margin: 1.5rem auto;
+    padding: clamp(0.75rem, 3vw, 1rem);
+    gap: clamp(0.5rem, 2vw, 1rem);
+  }
+  .booking-form input.error {
+    border-width: 2px;
+  }
+  .booking-form .error-message {
+    font-size: 0.75rem;
   }
 }

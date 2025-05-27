@@ -1,60 +1,211 @@
+/* Paytable.css – responsive version */
+/* All comments are in English */
 
+/* ================================
+   Root variables for layout & typography
+   ================================ */
+:root {
+  /* Container sizing */
+  --paytable-max-width: clamp(20rem, 90vw, 80rem);
+  --paytable-padding: clamp(1rem, 2vw, 2rem);
+  --paytable-gap: clamp(1rem, 2vw, 2rem);
+  --paytable-radius: clamp(0.5rem, 1vw, 1rem);
+
+  /* Font sizes */
+  --text-base: clamp(0.875rem, 1vw, 1rem);
+  --text-small: clamp(0.75rem, 1vw, 0.9rem);
+  --text-smaller: clamp(0.625rem, 1vw, 0.8rem);
+
+  /* Cell padding */
+  --cell-padding: clamp(0.5rem, 1vw, 1rem);
+}
+
+/* ================================
+   Container for table and form
+   ================================ */
 .paytable-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 1rem;
+  background-color: #fff;                   /* white card */
+  max-width: var(--paytable-max-width);
+  width: 100%;
+  margin: var(--paytable-padding) auto;
+  padding: var(--paytable-padding);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-radius: var(--paytable-radius);
+  display: grid;
+  gap: var(--paytable-gap);
+  user-select: none;         /* disable text selection */
+  overflow-x: auto;          /* allow horizontal scroll on narrow screens */
+}
+
+/* ================================
+   Table base styles
+   ================================ */
+.paytable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-base);
+  min-width: 600px;          /* keep layout on medium screens */
+}
+
+/* ================================
+   Header and cell styling
+   ================================ */
+.paytable th,
+.paytable td {
+  padding: var(--cell-padding);
+  border: 1px solid #e0e0e0;
+  text-align: left;
+}
+
+/* Header background */
+.paytable th {
+  background-color: var(--secondary-color);
+  color: var(--main-color);
+  font-weight: 600;
+}
+
+/* Zebra striping for rows */
+.paytable tbody tr:nth-child(odd) {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Hover state for rows */
+.paytable tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* ================================
+   Action button in table
+   ================================ */
+.remove-btn {
+  background: transparent;
+  border: none;
+  color: var(--main-color);
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  font-size: var(--text-small);
+  transition: color 0.2s ease;
+}
+
+.remove-btn:hover {
+  color: var(--secondary-color);
+}
+
+/* ================================
+   Total row styling
+   ================================ */
+.total-row td {
+  font-weight: bold;
+  border-top: 2px solid var(--main-color);
+}
+
+/* ================================
+   Order form layout & fields
+   ================================ */
+.order-form {
+  display: grid;
+  gap: var(--paytable-gap);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 0.25rem;
+  color: var(--main-color);
+  font-weight: 500;
+  font-size: var(--text-base);
+}
+
+.form-group input {
+  padding: var(--cell-padding);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: var(--text-base);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+.form-group input:hover {
+  border-color: var(--secondary-color);
+}
+
+.form-group input:focus {
+  border-color: var(--main-color);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+.form-group.error input {
+  border-color: red;
+}
+
+.form-error {
+  color: red;
+  font-size: var(--text-small);
+}
+
+.order-form .button-wrapper {
+  text-align: center;
+}
+
+/* ================================
+   Responsive adjustments
+   ================================ */
+
+/* Slight padding reduction on smaller desktops */
+@media (max-width: 1200px) {
+  :root {
+    --paytable-padding: clamp(0.75rem, 2vw, 1.5rem);
   }
-  
+}
+
+/* Tablet & small desktops – reduce container gap */
+@media (max-width: 992px) {
+  :root {
+    --paytable-gap: clamp(0.75rem, 2vw, 1.5rem);
+  }
+}
+
+/* Large phones / small tablets – adjust table and form sizes */
+@media (max-width: 768px) {
   .paytable {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 1rem;
+    min-width: 100%;
+    font-size: var(--text-small);
   }
-  
   .paytable th,
   .paytable td {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    text-align: left;
+    padding: calc(var(--cell-padding) * 0.75);
   }
-  
-  .total-row td {
-    font-weight: bold;
-    border-top: 2px solid #000;
-  }
-  
   .remove-btn {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    text-decoration: underline;
+    font-size: var(--text-smaller);
   }
-  
-  .order-form {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+  .form-group input {
+    padding: calc(var(--cell-padding) * 0.75);
+    font-size: var(--text-small);
   }
-  
-  .form-group {
-    display: flex;
-    flex-direction: column;
+}
+
+/* Mobile phones – final tweaks */
+@media (max-width: 576px) {
+  .paytable-container {
+    margin: var(--paytable-padding) auto;
   }
-  
-  .form-group.error input {
-    outline: 2px solid red;
+  .paytable th,
+  .paytable td {
+    padding: calc(var(--cell-padding) * 0.5);
+    font-size: var(--text-smaller);
   }
-  
-  .form-error {
-    color: red;
-    font-size: 0.9rem;
+  .form-group label {
+    font-size: var(--text-small);
   }
-  
-  .order-btn {
-    padding: 0.75rem;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-    border-radius: 4px;
-    margin-top: 0.5rem;
+  .form-group input {
+    padding: calc(var(--cell-padding) * 0.5);
+    font-size: var(--text-small);
   }
+  .remove-btn {
+    font-size: var(--text-smaller);
+  }
+}

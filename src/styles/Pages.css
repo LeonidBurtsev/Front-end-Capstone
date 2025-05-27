@@ -1,53 +1,123 @@
+/* pages.css – responsive version */
+/* All comments are in English */
+
+/* ================================
+   Root variables for sections
+   ================================ */
+:root {
+  /* Padding inside each section */
+  --section-padding: clamp(1rem, 2vw, 1.5rem);
+  /* Corner radius for sections */
+  --section-radius: clamp(0.5rem, 1vh, 1rem);
+  /* Gap between sections */
+  --section-gap: clamp(1rem, 2vw, 2rem);
+}
+
+/* ================================
+   Main pages container
+   ================================ */
 .pages {
   background-color: white;
-  min-height: 84vh;
-  width: 100vw;
+  min-height: 84vh;               /* Primary content area (desktop-first) */
+  width: 100%;
   display: grid;
-  flex-direction: column;
-  align-items: top;
-  justify-content: center;
+  row-gap: var(--section-gap);    /* Vertical spacing between sections */
+  align-items: start;             /* Stack sections from the top */
+  justify-items: center;          /* Center sections horizontally */
+  padding: var(--section-padding);
 }
 
-/* Общие стили */
+/* ================================
+   Top section base
+   ================================ */
 .section_UP {
-  border-radius: 1vh;
-  height: 20vh;
-  width: 100vw;
+  border-radius: var(--section-radius);
+  /* Fluid height between 15rem and 25rem, scaling with viewport height */
+  height: clamp(15rem, 20vh, 25rem);
+  width: 100%;
   display: grid;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1vh;
+  align-items: center;            /* Center content vertically */
+  justify-content: center;        /* Center content horizontally */
+  padding: var(--section-padding);
 }
 
-/* Варианты фона */
+/* Background variants for top section */
 .section_UP--main {
   background-color: var(--main-color);
 }
-
 .section_UP--secondary {
   background-color: var(--secondary-color);
 }
 
-
+/* ================================
+   Middle section
+   ================================ */
 .section_middle {
-  /* background-color: green; */
-  min-height: 38vh;
-  width: 100vw;
+  /* Fluid min-height between 25rem and 30rem */
+  min-height: clamp(25rem, 38vh, 30rem);
+  width: 100%;
   display: grid;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1vh;
+  padding: var(--section-padding);
 }
 
+/* ================================
+   Bottom section
+   ================================ */
 .section_down {
-  /* background-color: grey; */
-  min-height: 20vh;
-  width: 100vw;
+  /* Fluid min-height between 15rem and 25rem */
+  min-height: clamp(15rem, 20vh, 25rem);
+  width: 100%;
   display: grid;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1vh;
+  padding: var(--section-padding);
+}
+
+/* ================================
+   Responsive breakpoints (desktop-first)
+   ================================ */
+
+/* Slight padding reduction on smaller desktops */
+@media (max-width: 1200px) {
+  :root {
+    --section-padding: clamp(0.75rem, 2vw, 1rem);
+  }
+}
+
+/* Tablet & small desktops – adjust radii and section heights */
+@media (max-width: 992px) {
+  :root {
+    --section-radius: clamp(0.25rem, 1vh, 0.75rem);
+  }
+  .section_UP,
+  .section_middle,
+  .section_down {
+    /* Make height auto on tablets, but enforce a comfortable min-height */
+    height: auto;
+    min-height: clamp(20rem, 30vh, 22rem);
+  }
+}
+
+/* Large phones / small tablets – tighter gaps and padding */
+@media (max-width: 768px) {
+  :root {
+    --section-padding: clamp(0.5rem, 3vw, 1rem);
+    --section-gap: clamp(0.5rem, 2vw, 1rem);
+  }
+}
+
+/* Mobile phones – final tweaks */
+@media (max-width: 576px) {
+  .pages {
+    padding: var(--section-padding);
+  }
+  .section_UP,
+  .section_middle,
+  .section_down {
+    /* Remove fixed/min heights on narrowest screens */
+    height: auto;
+    min-height: auto;
+  }
 }

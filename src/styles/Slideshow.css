@@ -1,92 +1,172 @@
+/* Slideshow.css – responsive version */
+/* All comments are in English */
+
+/* ================================
+   Slideshow container
+   ================================ */
 .slideshow {
-    position: relative;
-    width: 75vw;
-    height: 50vh;              /* 50% of viewport height */
-    overflow: hidden;
-  }
-  
-  .slideshow-slider {
-    position: relative;
+  position: relative;
+
+  /* Fluid width: min 20rem, ideal 75vw, max 75rem */
+  width: clamp(20rem, 75vw, 75rem);
+
+  /* Fluid height: min 15rem, ideal 50vh, max 30rem */
+  height: clamp(15rem, 50vh, 30rem);
+
+  overflow: hidden;
+  border-radius: clamp(0.5rem, 1vw, 1rem); /* rounded corners */
+}
+
+/* Use aspect-ratio on narrow screens to maintain proportions */
+@media (max-width: 768px) {
+  .slideshow {
     width: 100%;
-    height: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
   }
-  
-  .slide {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    border-radius: 0.5rem;      /* rounded corners */
-  }
-  
-  .slide.active {
-    opacity: 1;
-  }
-  
-  .slide img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    border-radius: inherit;
-  }
-  
+}
+
+/* ================================
+   Slider inner wrapper
+   ================================ */
+.slideshow-slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* ================================
+   Individual slides
+   ================================ */
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  border-radius: inherit;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+/* ================================
+   Slide captions
+   ================================ */
+.slide-caption {
+  position: absolute;
+
+  /* Position from bottom: fluid between 1rem and 3rem */
+  bottom: clamp(1rem, 4vh, 3rem);
+  left: 0;
+
+  width: 100%;
+
+  /* Padding fluid: vertical 0.5rem–1rem, horizontal 1rem–2rem */
+  padding: clamp(0.5rem, 1.5vw, 1rem) clamp(1rem, 3vw, 2rem);
+
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+
+  /* Fluid font-size: min 0.875rem, ideal 1vw, max 1.25rem */
+  font-size: clamp(0.875rem, 1vw, 1.25rem);
+
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+
+/* ================================
+   Navigation arrows
+   ================================ */
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.4);
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 50%;
+
+  /* Fluid font-size: min 1.5rem, ideal 2.5vw, max 3rem */
+  font-size: clamp(1.5rem, 2.5vw, 3rem);
+
+  /* Fluid padding: min 0.25rem, ideal 0.5vw, max 1rem */
+  padding: clamp(0.25rem, 0.5vw, 1rem);
+}
+
+.nav.prev {
+  /* Distance from left: fluid between 1rem and 3rem */
+  left: clamp(1rem, 3vw, 3rem);
+}
+
+.nav.next {
+  /* Distance from right: fluid between 1rem and 3rem */
+  right: clamp(1rem, 3vw, 3rem);
+}
+
+/* ================================
+   Pagination dots
+   ================================ */
+.dots {
+  position: absolute;
+  bottom: clamp(0.5rem, 2vh, 1.5rem);
+  width: 100%;
+  text-align: center;
+}
+
+.dots .dot {
+  /* Reset default styles */
+  appearance: none;
+  -webkit-appearance: none;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  margin: 0 clamp(0.25rem, 1vw, 0.5rem);
+  padding: 0;
+
+  /* Fluid dot size: min 0.75rem, ideal 1vw, max 1.25rem */
+  width: clamp(0.75rem, 1vw, 1.25rem);
+  height: clamp(0.75rem, 1vw, 1.25rem);
+
+  border-radius: 50%;
+  cursor: pointer;
+  user-select: none;
+}
+
+.dots .dot.active {
+  background: rgba(255, 255, 255, 1);
+}
+
+.dots .dot:focus {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* ================================
+   Responsive breakpoints
+   ================================ */
+
+/* Slight adjustments on smaller desktops */
+@media (max-width: 1200px) {
   .slide-caption {
-    position: absolute;
-    bottom: 2rem; left: 0;
-    width: 100%;
-    padding: 0.5rem 1rem;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    font-size: 1rem;
-    border-bottom-left-radius: inherit;
-    border-bottom-right-radius: inherit;
+    bottom: clamp(0.75rem, 5vh, 2.5rem);
+    font-size: clamp(0.875rem, 1.2vw, 1.125rem);
   }
-  
-  /* arrows */
-  .nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0,0,0,0.4);
-    border: none;
-    color: white;
-    font-size: 2rem;
-    padding: 0.2rem 0.5rem;
-    cursor: pointer;
-    border-radius: 50%;
+}
+
+/* Tablet and below – reduce caption padding */
+@media (max-width: 992px) {
+  .slide-caption {
+    padding: clamp(0.5rem, 1vw, 0.75rem) clamp(0.75rem, 2vw, 1rem);
   }
-  .nav.prev { left: 2rem; }
-  .nav.next { right: 2rem; }
-  
-  .dots {
-    position: absolute;
-    bottom: 0.5rem;
-    width: 100%;
-    text-align: center;
-  }
-  
-  /* reset any default button styles & prevent selection */
-  .dots .dot {
-    -webkit-appearance: none;  /* remove iOS safari default */
-    appearance: none;
-    background: rgba(255,255,255,0.5);
-    border: none;
-    margin: 0 0.25rem;
-    padding: 0;
-    width: 0.8rem;
-    height: 0.8rem;
-    border-radius: 50%;
-    cursor: pointer;
-    user-select: none;         /* disable any text selection */
-  }
-  
-  /* active dot */
-  .dots .dot.active {
-    background: rgba(255,255,255,1);
-  }
-  
-  /* optional focus styling for accessibility */
-  .dots .dot:focus {
-    outline: 2px solid #fff;
-    outline-offset: 2px;
-  }
+}

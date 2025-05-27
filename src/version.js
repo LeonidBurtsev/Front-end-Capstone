@@ -3,8 +3,8 @@ const app_name = "Front-end Capstone"
 const author = "Leonid B."
 
 /* Setting up symVer. */
-const major_version = 0
-const minor_version = 9
+const major_version = 1
+const minor_version = 0
 const patch_version = 0
 
 export default function return_version() {

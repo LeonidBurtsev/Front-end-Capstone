@@ -1,0 +1,98 @@
+/* MyTwoButtons.css – responsive version */
+/* All comments are in English */
+
+/* ================================
+   Container for two-part button
+   ================================ */
+.two-buttons {
+  display: inline-flex;
+  border: 1px solid var(--secondary-color);
+  border-radius: clamp(0.25rem, 1vw, 0.5rem);
+  overflow: hidden;
+  background: #fff;
+}
+
+/* ================================
+   Base style for each half
+   ================================ */
+.two-buttons__btn {
+  flex: 1;
+  padding: clamp(0.5rem, 2vw, 1rem) clamp(1rem, 3vw, 1.5rem);
+  font-size: clamp(0.75rem, 1vw, 0.9rem);
+  color: var(--main-color);
+  background: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  user-select: none;
+}
+
+/* Separator lines */
+.two-buttons__btn--add {
+  border-right: 1px solid var(--secondary-color);
+}
+.two-buttons__btn--remove {
+  border-left: 1px solid var(--secondary-color);
+}
+
+/* Hover states */
+.two-buttons__btn:hover {
+  background-color: var(--secondary-color);
+  color: #fff;
+}
+
+/* Active (pressed) states */
+.two-buttons__btn:active {
+  background-color: var(--main-color);
+  color: #fff;
+}
+
+/* Disabled state (if needed) */
+.two-buttons__btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ================================
+   Responsive breakpoints (desktop-first)
+   ================================ */
+
+/* Slightly tighter padding on smaller desktops */
+@media (max-width: 1200px) {
+  .two-buttons__btn {
+    padding: clamp(0.4rem, 2vw, 0.75rem) clamp(0.75rem, 2.5vw, 1.25rem);
+  }
+}
+
+/* Tablets & large phones – full-width buttons, adjust font and padding */
+@media (max-width: 768px) {
+  .two-buttons {
+    width: 100%;
+  }
+  .two-buttons__btn {
+    padding: clamp(0.5rem, 3vw, 0.75rem);
+    font-size: clamp(0.75rem, 2vw, 0.85rem);
+  }
+}
+
+/* Mobile phones – stack buttons vertically */
+@media (max-width: 576px) {
+  .two-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  .two-buttons__btn {
+    width: 100%;
+    padding: clamp(0.75rem, 3vw, 1rem);
+    font-size: clamp(0.875rem, 3vw, 1rem);
+    text-align: center;
+  }
+  .two-buttons__btn--add {
+    border-right: none;
+    border-bottom: 1px solid var(--secondary-color);
+  }
+  .two-buttons__btn--remove {
+    border-left: none;
+    border-top: 1px solid var(--secondary-color);
+  }
+}

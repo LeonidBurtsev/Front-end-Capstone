@@ -1,16 +1,74 @@
+/* Footer.css – responsive version */
+/* All comments are in English */
+
+/* ================================
+   Footer main container
+   ================================ */
 .footerMain {
-    display: flex;
-    background-color: var(--main-color);
-    gap: 5vw;
-    justify-content: center;
-    align-items: center;
-    height: 7vh;
-    width: 100vw;
-    user-select: 'none';
-    opacity: 0.85;
+  display: flex;
+  background-color: var(--main-color);
+
+  /* Fluid gap: min 1rem, ideal 5vw, max 2rem */
+  gap: clamp(1rem, 5vw, 2rem);
+
+  justify-content: center;
+  align-items: center;
+
+  /* Fluid height: min 3rem, ideal 7vh, max 5rem */
+  height: clamp(3rem, 7vh, 5rem);
+
+  width: 100%;
+  user-select: none;
+  opacity: 0.85;
 }
 
+/* ================================
+   Footer text
+   ================================ */
 .footer_text {
-    color: var(--secondary-color);
-    font-size: 1vw;
+  color: var(--secondary-color);
+
+  /* Fluid font-size: min 0.75rem (12px), ideal 1.5vw, max 1rem (16px) */
+  font-size: clamp(0.75rem, 1.5vw, 1rem);
+
+  user-select: none;
+}
+
+/* ================================
+   Responsive breakpoints (desktop-first)
+   ================================ */
+
+/* Slight gap reduction on smaller desktops */
+@media (max-width: 1200px) {
+  .footerMain {
+    gap: clamp(0.75rem, 5vw, 1.5rem);
+  }
+}
+
+/* Tablet & small desktop – add horizontal padding */
+@media (max-width: 992px) {
+  .footerMain {
+    padding: 0 clamp(1rem, 4vw, 1.5rem);
+  }
+}
+
+/* Large phones / small tablets – stack items vertically */
+@media (max-width: 768px) {
+  .footerMain {
+    flex-direction: column;
+    height: auto;
+    padding: clamp(0.5rem, 3vh, 1rem) 0;
+    gap: clamp(0.5rem, 4vw, 1rem);
+  }
+}
+
+/* Mobile phones – final tweaks */
+@media (max-width: 576px) {
+  .footerMain {
+    gap: clamp(0.5rem, 5vw, 0.75rem);
+  }
+  .footer_text {
+    font-size: clamp(0.75rem, 3.5vw, 0.875rem);
+    text-align: center;
+  }
 }

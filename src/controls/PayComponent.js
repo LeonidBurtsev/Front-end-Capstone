@@ -1,11 +1,23 @@
-// PayComponent.jsx
+// src/controls/PayComponent.jsx
 import React from 'react';
 import '../styles/PayTable.css';
 
-function PayComponent({ items = [], onRemoveItem = () => {} }) {
+/**
+ * Компонент для отображения элементов корзины
+ * items: Array<{ type, name, descr, price, qty }>
+ * onRemoveItem: (index) => void - удаление элемента целиком
+ */
+export default function PayComponent({ items = [], onRemoveItem = () => {} }) {
   const safeItems = Array.isArray(items) ? items : [];
+
+  // Парсит строку типа "12.59$" в число
   const parsePrice = priceStr => parseFloat(String(priceStr).replace(/[^0-9.]/g, '')) || 0;
-  const total = safeItems.reduce((sum, [, , , price]) => sum + parsePrice(price), 0);
+
+  // Общая сумма: price * qty
+  const totalSum = safeItems.reduce(
+    (sum, item) => sum + parsePrice(item.price) * item.qty,
+    0
+  );
 
   return (
     <div className="paytable-container">
@@ -15,39 +27,46 @@ function PayComponent({ items = [], onRemoveItem = () => {} }) {
             <th>Type</th>
             <th>Name</th>
             <th>Description</th>
-            <th>Price</th>
+            <th>Unit Price</th>
+            <th>Qty</th>
+            <th>Total</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          {safeItems.map((item, idx) => (
-            <tr key={idx}>
-              <td>{item[0]}</td>
-              <td>{item[1]}</td>
-              <td>{item[2]}</td>
-              <td>{item[3]}</td>
-              <td>
-                <button
-                  type="button"
-                  className="remove-btn"
-                  onClick={() => onRemoveItem(idx)}
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
+          {safeItems.map((item, idx) => {
+            const unit = parsePrice(item.price);
+            const lineTotal = (unit * item.qty).toFixed(2) + '$';
+
+            return (
+              <tr key={idx}>
+                <td>{item.type}</td>
+                <td>{item.name}</td>
+                <td>{item.descr}</td>
+                <td>{item.price}</td>
+                <td>{item.qty}</td>
+                <td>{lineTotal}</td>
+                <td>
+                  <button
+                    type="button"
+                    className="remove-btn"
+                    onClick={() => onRemoveItem(idx)}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
         <tfoot>
           <tr className="total-row">
-            <td colSpan="3"></td>
-            <td>Summ total:</td>
-            <td>{total.toFixed(2)}$</td>
+            <td colSpan="5"></td>
+            <td>Sum total:</td>
+            <td>{totalSum.toFixed(2)}$</td>
           </tr>
         </tfoot>
       </table>
     </div>
   );
 }
-
-export default PayComponent;

@@ -1,0 +1,168 @@
+/* MenuNav.css – responsive version */
+/* All comments are in English */
+
+/* ================================
+   Wrapper for the menu navigation
+   ================================ */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;              /* use full container width */
+}
+
+/* ================================
+   Scrollable nav container
+   ================================ */
+.navWrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* ================================
+   Horizontal nav bar
+   ================================ */
+.navBar {
+  display: flex;
+  justify-content: center;
+  gap: var(--gap);           /* fluid gap from :root */
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: clamp(0.5rem, 2vh, 1rem) 0;
+}
+
+/* Hide scrollbar in WebKit browsers */
+.navBar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ================================
+   List of menu rows
+   ================================ */
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  width: clamp(20rem, 60vw, 60rem);
+  margin: 0 auto;
+}
+
+/* ================================
+   Single row in menu
+   ================================ */
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(0.5rem, 1.5vw, 0.75rem) clamp(0.75rem, 2vw, 1rem);
+  border: 1px solid #ddd;
+  border-radius: clamp(0.25rem, 1vw, 0.5rem);
+}
+
+/* Text and button containers inside a row */
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-right: var(--gap);
+}
+.buttonsContainer {
+  margin-right: var(--gap);
+}
+.qtyContainer {
+  min-width: clamp(1rem, 2vw, 1.5rem);
+  text-align: center;
+}
+
+/* ================================
+   Nav item buttons
+   ================================ */
+.navItem {
+  padding: clamp(0.5rem, 1.5vw, 1rem) clamp(0.75rem, 2vw, 1rem);
+  cursor: pointer;
+  border-radius: clamp(0.25rem, 1vw, 0.5rem);
+  white-space: nowrap;
+}
+
+/* Active / inactive states */
+.active {
+  background-color: var(--secondary-color);
+  color: black;
+}
+.inactive {
+  background-color: var(--main-color);
+  color: white;
+}
+
+/* ================================
+   Gradient hints at edges
+   ================================ */
+.navWrapper::before,
+.navWrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(1rem, 2vw, 2rem);
+  pointer-events: none;
+}
+.navWrapper::before {
+  left: 0;
+  background: linear-gradient(to right, white, transparent);
+}
+.navWrapper::after {
+  right: 0;
+  background: linear-gradient(to left, white, transparent);
+}
+
+/* ================================
+   Responsive breakpoints (desktop-first)
+   ================================ */
+
+/* Slightly narrower list on small desktops */
+@media (max-width: 1200px) {
+  .listContainer {
+    width: clamp(20rem, 70vw, 55rem);
+  }
+}
+
+/* Tablets & small desktops: reduce gaps */
+@media (max-width: 992px) {
+  .navBar {
+    gap: clamp(0.5rem, 3vw, 1rem);
+  }
+  .listContainer {
+    width: clamp(20rem, 80vw, 50rem);
+  }
+}
+
+/* Large phones / small tablets: tighten padding & sizes */
+@media (max-width: 768px) {
+  .row {
+    padding: clamp(0.4rem, 1vw, 0.6rem) clamp(0.5rem, 1.5vw, 0.75rem);
+  }
+  .navItem {
+    padding: clamp(0.4rem, 1vw, 0.75rem) clamp(0.5rem, 1.5vw, 0.75rem);
+  }
+  .qtyContainer {
+    min-width: clamp(0.75rem, 2vw, 1rem);
+  }
+}
+
+/* Mobile phones: full-width list, smaller nav padding */
+@media (max-width: 576px) {
+  .navBar {
+    justify-content: flex-start;
+    padding: clamp(0.25rem, 2vh, 0.5rem) 0;
+  }
+  .listContainer {
+    width: 90vw;
+  }
+  .row {
+    padding: clamp(0.25rem, 1vw, 0.5rem) clamp(0.5rem, 1vw, 0.75rem);
+  }
+  .navItem {
+    padding: clamp(0.25rem, 1vw, 0.5rem) clamp(0.5rem, 1vw, 0.75rem);
+    font-size: clamp(0.75rem, 2.5vw, 1rem);
+  }
+}
