@@ -2,14 +2,15 @@
     display: flex;
     background-color: var(--main-color);
     gap: 5vw;
-    justify-content: center; 
-    align-items: center;     
+    justify-content: center;
+    align-items: center;
     height: 7vh;
     width: 100vw;
-    user-select: 'none'; 
+    user-select: 'none';
+    opacity: 0.85;
 }
 
-.footer_text  {
+.footer_text {
     color: var(--secondary-color);
     font-size: 1vw;
 }

@@ -1,24 +1,20 @@
 // PayTable.jsx
 import React, { useState } from 'react';
+import PayComponent from './PayComponent';
+import MyButton from './MyButton';
 import '../styles/PayTable.css';
 
 function PayTable({ items = [], onRemoveItem = () => {} }) {
-  // Если props.items не массив, используем пустой массив
-  const safeItems = Array.isArray(items) ? items : [];
-
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState('');
   const [errors, setErrors] = useState({});
 
-  const parsePrice = priceStr => parseFloat(String(priceStr).replace(/[^0-9.]/g, '')) || 0;
-  const total = safeItems.reduce((sum, [, , , price]) => sum + parsePrice(price), 0);
-
   const handleSubmit = e => {
     e.preventDefault();
     const newErrors = {};
 
-    if (safeItems.length === 0) {
+    if (items.length === 0) {
       newErrors.items = 'Basket empty !';
     }
     if (!name.trim()) newErrors.name = true;
@@ -29,7 +25,7 @@ function PayTable({ items = [], onRemoveItem = () => {} }) {
     if (Object.keys(newErrors).length > 0) return;
 
     const order = {
-      items: safeItems,
+      items,
       name,
       address,
       phone,
@@ -38,44 +34,8 @@ function PayTable({ items = [], onRemoveItem = () => {} }) {
   };
 
   return (
-    <div className="paytable-container">
-      <table className="paytable">
-        <thead>
-          <tr>
-            <th>Type</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {safeItems.map((item, idx) => (
-            <tr key={idx}>
-              <td>{item[0]}</td>
-              <td>{item[1]}</td>
-              <td>{item[2]}</td>
-              <td>{item[3]}</td>
-              <td>
-                <button
-                  type="button"
-                  className="remove-btn"
-                  onClick={() => onRemoveItem(idx)}
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-        <tfoot>
-          <tr className="total-row">
-            <td colSpan="3"></td>
-            <td>Summ total:</td>
-            <td>{total.toFixed(2)}$</td>
-          </tr>
-        </tfoot>
-      </table>
+    <div>
+      <PayComponent items={items} onRemoveItem={onRemoveItem} />
 
       <form className="order-form" onSubmit={handleSubmit} noValidate>
         <div className={`form-group ${errors.name ? 'error' : ''}`}>  
@@ -106,12 +66,10 @@ function PayTable({ items = [], onRemoveItem = () => {} }) {
           />
         </div>
         {errors.items && <div className="form-error">{errors.items}</div>}
-        <button type="submit" className="order-btn">
-          Order and pay
-        </button>
+        <MyButton type="submit">Order and pay</MyButton>
       </form>
     </div>
-  )
+  );
 }
 
 export default PayTable;

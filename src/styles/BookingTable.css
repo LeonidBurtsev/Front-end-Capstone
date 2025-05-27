@@ -1,0 +1,77 @@
+/* BookingTable.css */
+
+/* Container styling for the booking form */
+.booking-form {
+  background-color: #fff; /* white background */
+  max-width: 400px;
+  width: 90%;
+  margin: 2rem auto;
+  padding: 2rem;
+  display: grid;
+  gap: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Label styling */
+.booking-form label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--main-color);
+}
+
+/* Input and select styling */
+.booking-form input,
+.booking-form select {
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+/* Hover state for inputs */
+.booking-form input:hover,
+.booking-form select:hover {
+  border-color: var(--secondary-color);
+}
+
+/* Focus state for inputs */
+.booking-form input:focus,
+.booking-form select:focus {
+  border-color: var(--main-color);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Error state styling */
+.booking-form input.error {
+  border-color: red;
+}
+.booking-form .error-message {
+  font-size: 0.875rem;
+  color: red;
+}
+
+/* Button wrapper for centering the submit button */
+.booking-form .button-wrapper {
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .booking-form {
+    width: 400px;
+  }
+}
+@media (max-width: 480px) {
+  .booking-form {
+    padding: 1rem;
+    gap: 1rem;
+  }
+  .booking-form input,
+  .booking-form select {
+    font-size: 0.875rem;
+    padding: 0.5rem 0.75rem;
+  }
+}

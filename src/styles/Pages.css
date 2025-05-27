@@ -1,17 +1,17 @@
 .pages {
-    background-color: white;
-    min-height: 84vh;
-    width: 100vw;
-    display: grid;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  background-color: white;
+  min-height: 84vh;
+  width: 100vw;
+  display: grid;
+  flex-direction: column;
+  align-items: top;
+  justify-content: center;
 }
 
 /* Общие стили */
 .section_UP {
   border-radius: 1vh;
-  min-height: 20vh;
+  height: 20vh;
   width: 100vw;
   display: grid;
   flex-direction: column;
@@ -24,29 +24,30 @@
 .section_UP--main {
   background-color: var(--main-color);
 }
+
 .section_UP--secondary {
   background-color: var(--secondary-color);
 }
 
 
 .section_middle {
-    /* background-color: green; */
-    min-height: 38vh;
-    width: 100vw;
-    display: grid;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 1vh;
+  /* background-color: green; */
+  min-height: 38vh;
+  width: 100vw;
+  display: grid;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1vh;
 }
 
 .section_down {
-    /* background-color: grey; */
-    min-height: 20vh;
-    width: 100vw;
-    display: grid;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 1vh;
+  /* background-color: grey; */
+  min-height: 20vh;
+  width: 100vw;
+  display: grid;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1vh;
 }

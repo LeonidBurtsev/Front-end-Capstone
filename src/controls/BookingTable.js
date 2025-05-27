@@ -1,32 +1,43 @@
+// BookingTable.jsx
 import React, { useState } from 'react';
+import MyButton from '../controls/MyButton';
+import '../styles/BookingTable.css';
 
 const BookingTable = () => {
   const [date, setDate] = useState('');
   const [time, setTime] = useState('17:00');
   const [guests, setGuests] = useState(1);
   const [occasion, setOccasion] = useState('Birthday');
+  const [phone, setPhone] = useState('');
+  const [phoneError, setPhoneError] = useState(false);
+
+  const validatePhone = (value) => {
+    // count only digits
+    const digits = value.replace(/\D/g, '');
+    return digits.length >= 6;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // You can handle form submission here
-    console.log({
+
+    if (!validatePhone(phone)) {
+      setPhoneError(true);
+      return;
+    }
+    setPhoneError(false);
+
+    const send_object = {
       date,
       time,
       guests,
-      occasion
-    });
+      occasion,
+      phone,
+    };
+    alert(`Order confirmed!\n${JSON.stringify(send_object, null, 2)}`);
   };
 
-const form_style = {
-  display: 'grid',
-  maxWidth: '25vw',
-  gap: '20px',
-  'align-items': 'center',
-  'justify-content': 'center'
-}
-
   return (
-    <form onSubmit={handleSubmit} style={form_style}>
+    <form onSubmit={handleSubmit} className="booking-form">
       <label htmlFor="res-date">Choose date</label>
       <input
         type="date"
@@ -41,6 +52,12 @@ const form_style = {
         value={time}
         onChange={(e) => setTime(e.target.value)}
       >
+        <option>11:00</option>
+        <option>12:00</option>
+        <option>13:00</option>
+        <option>14:00</option>
+        <option>15:00</option>
+        <option>16:00</option>
         <option>17:00</option>
         <option>18:00</option>
         <option>19:00</option>
@@ -70,7 +87,32 @@ const form_style = {
         <option>Anniversary</option>
       </select>
 
-      <input type="submit" value="Make Your reservation" />
+      {/* Phone number field with validation */}
+      <label htmlFor="phone">Phone Number</label>
+      <input
+        type="tel"
+        id="phone"
+        placeholder="+1 (555) 123-4567"
+        value={phone}
+        onChange={(e) => {
+          setPhone(e.target.value);
+          if (phoneError && validatePhone(e.target.value)) {
+            setPhoneError(false);
+          }
+        }}
+        className={phoneError ? 'error' : ''}
+      />
+      {phoneError && (
+        <span className="error-message">
+          Please enter at least 6 digits.
+        </span>
+      )}
+
+      <div className="button-wrapper">
+        <MyButton type="submit">
+          Reserve a table
+        </MyButton>
+      </div>
     </form>
   );
 };

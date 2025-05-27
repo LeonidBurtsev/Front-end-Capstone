@@ -1,134 +1,89 @@
-import { useState, useEffect, useContext } from "react";
+// src/controls/MenuNav.jsx
+import React, { useState, useContext } from "react";
 import "../index.css";
-import "../pages/_global_";
-import { BasketContext } from '../pages/_global_';
+import { BasketContext } from "../pages/_global_";
 
-/**
- * MenuNav component (v2)
- * - multi‑select with toggle
- * - grey hover, red selected
- * - divider between cards
- * - send_contextAPIselection logs currentSelection whenever it changes
- */
+const menuData = [
+  {
+    type: "Breakfast",
+    options: [
+      {
+        name: "Greek Salad",
+        descr:
+          "The famous greek salad of crispy lettuce, peppers, olives and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons.",
+        price: "12.59$",
+      },
+      {
+        name: "Italian Salad",
+        descr:
+          "The famous italian salad of crispy lettuce, peppers, olives and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons.",
+        price: "13.59$",
+      },
+    ],
+  },
+  {
+    type: "Main",
+    options: [
+      {
+        name: "Steak",
+        descr:
+          "The famous Steak of crispy lettuce, peppers, olives and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons.",
+        price: "9.59$",
+      },
+      {
+        name: "Italian Steak",
+        descr:
+          "The famous Italian Steak of crispy lettuce, peppers, olives and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons.",
+        price: "108.59$",
+      },
+    ],
+  },
+];
+
 export default function MenuNav() {
-  /* ------------------------------------------------------------------
-   *   DATA & STATE
-   * ------------------------------------------------------------------ */
-  const initialMenu = [
-    {
-      type: "Breakfast",
-      options: [
-        {
-          name: "Greek Salad",
-          descr:
-            "The famous greek salad of crispy lettuce, peppers, olives and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons.",
-          price: "12.59$",
-          selected: false,
-        },
-        {
-          name: "Italian Salad",
-          descr:
-            "The famous italian salad of crispy lettuce, peppers, olives and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons.",
-          price: "13.59$",
-          selected: false,
-        },
-      ],
-    },
-    {
-      type: "Main",
-      options: [
-        {
-          name: "Steak",
-          descr:
-            "The famous Steak of crispy lettuce, peppers, olives and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons.",
-          price: "9.59$",
-          selected: false,
-        },
-        {
-          name: "Italian Steak",
-          descr:
-            "The famous Italian Steak of crispy lettuce, peppers, olives and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons.",
-          price: "108.59$",
-          selected: false,
-        },
-      ],
-    },
-  ];
-
-  const [menus, setMenus] = useState(initialMenu);
   const [activeMenuIdx, setActiveMenuIdx] = useState(0);
-  const [currentSelection, setCurrentSelection] = useState([]); // [[type,name,descr,price], …]
-  const activeMenu = menus[activeMenuIdx];
+  const { currentSelection, updateSelection } = useContext(BasketContext);
 
-  /* ------------------------------------------------------------------
-   *   External‑API helper
-   * ------------------------------------------------------------------ */
-  const { updateSelection } = useContext(BasketContext);
-
-  // Функция, которая принимает новое состояние корзины и записывает его в Context
-  const send_contextAPIselection = (sel) => {
-    // Обновляем контекст
-    updateSelection(sel);
-    // Логируем для отладки
-    console.log('contextAPI selection updated:', sel);
+  // Переключаем вкладку «Breakfast»/«Main» и т.д.
+  const handleMenuClick = (idx) => {
+    setActiveMenuIdx(idx);
   };
 
-  // Whenever currentSelection changes, push it to the (mock) Context/API
-  useEffect(() => {
-    send_contextAPIselection(currentSelection);
-  }, [currentSelection]);
-
-  /* ------------------------------------------------------------------
-   *   HANDLERS
-   * ------------------------------------------------------------------ */
-  const handleMenuClick = (idx) => setActiveMenuIdx(idx);
-
+  // Добавляем или убираем пункт из корзины
   const handleOptionToggle = (menuIdx, optionIdx) => {
-    setMenus((prev) => {
-      // Toggle the clicked option
-      const next = prev.map((m, mIdx) => {
-        if (mIdx !== menuIdx) return m;
-        const newOptions = m.options.map((opt, oIdx) =>
-          oIdx === optionIdx ? { ...opt, selected: !opt.selected } : opt
-        );
-        return { ...m, options: newOptions };
-      });
+    const { type, options } = menuData[menuIdx];
+    const opt = options[optionIdx];
+    const itemTuple = [type, opt.name, opt.descr, opt.price];
 
-      // Build new selection list (flatten all selected dishes)
-      const newSelection = next.flatMap(({ type, options }) =>
-        options
-          .filter((o) => o.selected)
-          .map((o) => [type, o.name, o.descr, o.price])
-      );
+    const exists = currentSelection.some(
+      (sel) => sel[0] === type && sel[1] === opt.name
+    );
+    const newSelection = exists
+      ? currentSelection.filter(
+          (sel) => !(sel[0] === type && sel[1] === opt.name)
+        )
+      : [...currentSelection, itemTuple];
 
-      setCurrentSelection(newSelection);
-      return next;
-    });
+    updateSelection(newSelection);
   };
 
-  /* ------------------------------------------------------------------
-   *   STYLES (inline for clarity)
-   * ------------------------------------------------------------------ */
+  const activeMenu = menuData[activeMenuIdx];
+
+  // Цвета и стили (как у вас было)
   const menu_colors = {
+    menu_item_selected: "var(--secondary-color)",
+    menu_item_unselected: "var(--main-color)",
+    menu_text_unselected: "white",
+    menu_text_selected: "black",
+    initial_color: "var(--main-color)",
+    color_when_selected: "var(--secondary-color)",
+    card_hover_over: "var(--third-color)",
+    card_main_text: "black",
+    card_secondary_text: "white",
+    divider: "var(--secondary-color)",
+    order_for_delivery: "black",
+  };
 
-    /* MENU ITEM SETTINGS. */
-    menu_item_selected : 'var(--secondary-color)',
-    menu_item_unselected : 'var(--main-color)',
-    menu_text_unselected : "white",
-    menu_text_selected : "black",
-
-    /* ELEMENTS ITSELF.  */
-
-    initial_color :'var(--main-color)',
-    color_when_selected : 'var(--secondary-color)',
-    card_hover_over : 'var(--third-color)',
-    card_main_text : "black",
-    card_secondary_text : "white",
-
-    /* ADITIONALS*/
-    divider : 'var(--secondary-color)',
-    order_for_delivery : "black"
-  }
   const styles = {
     wrapper: {
       display: "flex",
@@ -140,7 +95,7 @@ export default function MenuNav() {
       width: "80vw",
       margin: "1vh 0",
       textAlign: "left",
-      color: menu_colors['order_for_delivery'],
+      color: menu_colors.order_for_delivery,
       fontSize: "1vw",
     },
     navBar: {
@@ -157,11 +112,15 @@ export default function MenuNav() {
       cursor: "pointer",
       padding: "0.5vw 1vw",
       borderRadius: 10,
-      backgroundColor: active ? menu_colors['menu_item_selected']:  menu_colors['menu_item_unselected'],
-      color: active ? menu_colors['menu_text_selected']:  menu_colors['menu_text_unselected'],
+      backgroundColor: active
+        ? menu_colors.menu_item_selected
+        : menu_colors.menu_item_unselected,
+      color: active
+        ? menu_colors.menu_text_selected
+        : menu_colors.menu_text_unselected,
       fontSize: "1.5vw",
       transition: "background-color 0.3s ease, color 0.3s ease",
-      userSelect: 'none' 
+      userSelect: "none",
     }),
     verticalList: {
       display: "flex",
@@ -169,7 +128,7 @@ export default function MenuNav() {
       alignItems: "center",
       width: "50vw",
       overflowY: "auto",
-      color: menu_colors['color_when_selected'],
+      color: menu_colors.color_when_selected,
       fontSize: "1.2vw",
     },
     card: (selected) => ({
@@ -178,33 +137,34 @@ export default function MenuNav() {
       gap: "0.3vh",
       padding: "0.5vw 1vw",
       borderRadius: 10,
-      backgroundColor: selected ?  menu_colors['color_when_selected']:  menu_colors['initial_color'],
-      color: selected ?  menu_colors['card_main_text'] : menu_colors['card_secondary_text'],
+      backgroundColor: selected
+        ? menu_colors.color_when_selected
+        : menu_colors.initial_color,
+      color: selected
+        ? menu_colors.card_main_text
+        : menu_colors.card_secondary_text,
       fontSize: "1.3vw",
       cursor: "pointer",
       transition: "background-color 0.3s ease",
-      userSelect: 'none' 
+      userSelect: "none",
     }),
     divider: {
       width: "100%",
       height: 1,
-      backgroundColor: menu_colors['divider'],
+      backgroundColor: menu_colors.divider,
       margin: "0.5vh 0",
     },
   };
 
-  /* ------------------------------------------------------------------
-   *   RENDER
-   * ------------------------------------------------------------------ */
   return (
     <div style={styles.wrapper}>
       <div style={styles.heading}>
-        <h1>Order for delivery !</h1>
+        <h1>Order for delivery!</h1>
       </div>
 
-      {/* Horizontal menu */}
+      {/* Навигация по типам блюд */}
       <div style={styles.navBar}>
-        {menus.map((m, idx) => (
+        {menuData.map((m, idx) => (
           <div
             key={m.type}
             style={styles.navItem(idx === activeMenuIdx)}
@@ -215,31 +175,38 @@ export default function MenuNav() {
         ))}
       </div>
 
-      {/* Vertical list for active menu */}
+      {/* Список блюд выбранного типа */}
       <div style={styles.verticalList}>
-        {activeMenu.options.map((opt, idx) => (
-          <div key={opt.name} style={{ width: "100%" }}>
-            {/* card */}
-            <div
-              style={styles.card(opt.selected)}
-              onClick={() => handleOptionToggle(activeMenuIdx, idx)}
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = menu_colors['card_hover_over'])}
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.backgroundColor = opt.selected
-                  ? menu_colors['color_when_selected']
-                  : menu_colors['initial_color'])
-              }
-            >
-              <div>{opt.name}</div>
-              <div>{opt.descr}</div>
-              <div>{opt.price}</div>
+        {activeMenu.options.map((opt, idx) => {
+          const selected = currentSelection.some(
+            (sel) =>
+              sel[0] === activeMenu.type && sel[1] === opt.name
+          );
+          return (
+            <div key={opt.name} style={{ width: "100%" }}>
+              <div
+                style={styles.card(selected)}
+                onClick={() => handleOptionToggle(activeMenuIdx, idx)}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.backgroundColor =
+                    menu_colors.card_hover_over)
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.backgroundColor = selected
+                    ? menu_colors.color_when_selected
+                    : menu_colors.initial_color)
+                }
+              >
+                <div>{opt.name}</div>
+                <div>{opt.descr}</div>
+                <div>{opt.price}</div>
+              </div>
+              {idx < activeMenu.options.length - 1 && (
+                <div style={styles.divider} />
+              )}
             </div>
-            {/* divider except after last item */}
-            {idx < activeMenu.options.length - 1 && (
-              <div style={styles.divider} />
-            )}
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

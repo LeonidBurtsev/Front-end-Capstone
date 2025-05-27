@@ -3,24 +3,21 @@
   --main-color: #495E57;
   --secondary-color: #F4CE14;
   --third-color: orange;
+  --four-color: lightgrey;
   --gap: 1rem;
   --main-font: 'Karla', bold;
   --main-font-weight: 900;
   --add-font: 'Karla', sans-serif;
   --add-font-weight: 1400;
   --small-font: 'Karla', sans-serif;
-  --small-font-weight: 300;
+  --small-font-weight: 600;
+  --button-font-size: 24px;
 }
 
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
 }
 
 h1 {
@@ -102,6 +99,5 @@ h1 {
   font-family: var(--add-font);
   font-size: 32px;
   font-weight: var(--add-font-weight);
-
 }
 
