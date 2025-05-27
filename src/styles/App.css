@@ -30,7 +30,7 @@
    ================================ */
 .mainDiv {
   display: grid;
-  min-height: 100vh;
+  min-height: 9vh;
   width: 100%;
 }
 

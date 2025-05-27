@@ -10,7 +10,7 @@ export default function MenuNav() {
   const { currentSelection, updateSelection } = useContext(BasketContext);
   const navRef = useRef(null);
 
-  // при монтировании центрируем, если контент шире контейнера
+  // Mount on center if needed.
   useEffect(() => {
     const el = navRef.current;
     if (el && el.scrollWidth > el.clientWidth) {
@@ -72,9 +72,9 @@ export default function MenuNav() {
 
   return (
     <div className={styles.wrapper}>
-      {/* Обёртка для градиентов */}
+      {/* Gradient ? */}
       <div className={styles.navWrapper}>
-        {/* Навигация по типам */}
+        {/* Navigate by types */}
         <div className={styles.navBar} ref={navRef}>
           {menuData.map((m, idx) => (
             <div
@@ -90,7 +90,7 @@ export default function MenuNav() {
         </div>
       </div>
 
-      {/* Список блюд */}
+      {/* Menu list */}
       <div className={styles.listContainer}>
         {activeMenu.options.map((opt, idx) => {
           const inBasket = currentSelection.find(

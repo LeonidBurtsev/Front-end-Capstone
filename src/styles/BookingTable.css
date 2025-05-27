@@ -27,7 +27,7 @@
   background-color: #fff; /* white background */
   width: 100%;
   max-width: var(--form-max-width);
-  margin: 2rem auto;
+  margin: 0.5rem auto;
   padding: var(--form-padding);
   display: grid;
   gap: var(--form-gap);
@@ -118,7 +118,7 @@
 /* Final tweaks for mobile phones */
 @media (max-width: 576px) {
   .booking-form {
-    margin: 1.5rem auto;
+    margin: 0.5rem auto;
     padding: clamp(0.75rem, 3vw, 1rem);
     gap: clamp(0.5rem, 2vw, 1rem);
   }

@@ -18,7 +18,7 @@
    ================================ */
 .pages {
   background-color: white;
-  min-height: 84vh;               /* Primary content area (desktop-first) */
+  min-height: 25vh;               /* Primary content area (desktop-first) */
   width: 100%;
   display: grid;
   row-gap: var(--section-gap);    /* Vertical spacing between sections */

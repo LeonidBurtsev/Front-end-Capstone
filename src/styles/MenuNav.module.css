@@ -29,6 +29,7 @@
   overflow-x: auto;
   scroll-behavior: smooth;
   padding: clamp(0.5rem, 2vh, 1rem) 0;
+    user-select: none;
 }
 
 /* Hide scrollbar in WebKit browsers */

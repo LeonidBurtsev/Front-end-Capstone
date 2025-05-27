@@ -7,7 +7,7 @@
 :root {
   /* Container sizing */
   --paytable-max-width: clamp(20rem, 90vw, 80rem);
-  --paytable-padding: clamp(1rem, 2vw, 2rem);
+  --paytable-padding: clamp(0.5rem, 1vw, 0.5rem);
   --paytable-gap: clamp(1rem, 2vw, 2rem);
   --paytable-radius: clamp(0.5rem, 1vw, 1rem);
 

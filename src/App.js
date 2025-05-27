@@ -9,43 +9,48 @@ import { Routes, Route, NavLink } from "react-router-dom";
 
 function App() {
   return (
-    <header className="mainDiv">
-      <nav className="navigation">
-        <NavLink
-          to="/"
-          end
-          className="navigation_text"
-        >
-          Homepage
-        </NavLink>
-        <NavLink
-          to="/menu"
-          className="navigation_text"
-        >
-          Menu
-        </NavLink>
-        <NavLink
-          to="/reserve"
-          className="navigation_text"
-        >
-          Book
-        </NavLink>
-        <NavLink
-          to="/basket"
-          className="navigation_text"
-        >
-          Basket
-        </NavLink>
-      </nav>
+    <>
+      <header className="mainDiv">
+        <nav className="navigation">
+          <NavLink
+            to="/"
+            end
+            className="navigation_text"
+          >
+            Homepage
+          </NavLink>
+          <NavLink
+            to="/menu"
+            className="navigation_text"
+          >
+            Menu
+          </NavLink>
+          <NavLink
+            to="/reserve"
+            className="navigation_text"
+          >
+            Book
+          </NavLink>
+          <NavLink
+            to="/basket"
+            className="navigation_text"
+          >
+            Basket
+          </NavLink>
+        </nav>
+      </header>
 
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/menu" element={<Menu />} />
-        <Route path="/reserve" element={<Reserve />} />
-        <Route path="/basket" element={<Basket />} />
-      </Routes>
-      <Footer/>
-    </header>
+      <main>
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/reserve" element={<Reserve />} />
+          <Route path="/basket" element={<Basket />} />
+        </Routes>
+      </main>
+
+      <Footer />
+    </>
   );
 }
 

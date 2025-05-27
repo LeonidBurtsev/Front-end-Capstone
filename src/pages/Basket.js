@@ -1,4 +1,3 @@
-// src/pages/Basket.js
 import React, { useContext } from 'react';
 import '../styles/Pages.css';
 import { BasketContext } from './_global_';
@@ -18,16 +17,19 @@ export default function Basket() {
 
   return (
     <main className='pages'>
-      <div className='section_UP section_UP--secondary'>
+      {/* Header section with main title and description */}
+      <header className='section_UP section_UP--secondary'>
         <h1 className='header_text'>{main_text}</h1>
-        <h1 className='usual_text'>{add_text1}</h1>
-      </div>
-      <div className='section_middle'>
+        <p className='usual_text'>{add_text1}</p>
+      </header>
+
+      {/* PayTable section with basket contents */}
+      <section className='section_middle'>
         <PayTable
           items={currentSelection}
           onRemoveItem={handleRemoveItem}
         />
-      </div>
+      </section>
     </main>
   );
 }
